@@ -11,7 +11,7 @@ export const getAccessToken = () => {
 };
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -49,7 +49,7 @@ api.interceptors.response.use(
 
       try {
         const { data } = await axios.post('/api/auth/refresh', {}, { withCredentials: true });
-        
+
         if (data.accessToken) {
           setAccessToken(data.accessToken);
           originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
