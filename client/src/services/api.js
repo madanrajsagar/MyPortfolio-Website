@@ -10,35 +10,36 @@ export const getAccessToken = () => {
   return accessToken;
 };
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+console.log('API URL:', API_URL);
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // Enables cookie storage across backend-frontend
+  withCredentials: true,
 });
 
-// Request interceptor: attach bearer token
 api.interceptors.request.use(
   (config) => {
     const token = getAccessToken();
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Response interceptor: catch 401 and refresh token silently
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-    // Avoid infinite loop on auth endpoints or retry requests
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
@@ -48,18 +49,27 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const { data } = await axios.post('/api/auth/refresh', {}, { withCredentials: true });
+        const { data } = await axios.post(
+          `${API_URL}/auth/refresh`,
+          {},
+          { withCredentials: true }
+        );
 
         if (data.accessToken) {
           setAccessToken(data.accessToken);
-          originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
-          return api(originalRequest); // Retry original request
+
+          originalRequest.headers.Authorization =
+            `Bearer ${data.accessToken}`;
+
+          return api(originalRequest);
         }
       } catch (refreshError) {
-        console.error('Silent token refresh failed, user session expired');
+        console.error('Silent token refresh failed');
+
         setAccessToken('');
-        // Trigger custom event or let AuthContext handle redirect
+
         window.dispatchEvent(new Event('auth-logout'));
+
         return Promise.reject(refreshError);
       }
     }
