@@ -1,0 +1,19 @@
+{
+  "name": "madanraj-portfolio-platform",
+  "version": "1.0.0",
+  "description": "Premium Full-Stack MERN Developer Portfolio Platform",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=server\" \"npm run dev --workspace=client\"",
+    "install-all": "npm install",
+    "build": "npm run build --workspace=client",
+    "start": "npm start --workspace=server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

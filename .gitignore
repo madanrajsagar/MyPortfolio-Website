@@ -1,0 +1,146 @@
+# ==========================================
+# DEPENDENCIES
+# ==========================================
+
+node_modules/
+**/node_modules/
+
+
+# ==========================================
+# ENVIRONMENT VARIABLES / SECRETS
+# ==========================================
+
+.env
+.env.*
+!.env.example
+
+# Common environment files
+client/.env
+client/.env.*
+server/.env
+server/.env.*
+
+# NEVER commit secrets
+*.pem
+*.key
+
+
+# ==========================================
+# BUILD OUTPUT
+# ==========================================
+
+dist/
+build/
+**/dist/
+**/build/
+
+
+# ==========================================
+# VITE
+# ==========================================
+
+.vite/
+**/.vite/
+
+
+# ==========================================
+# LOGS
+# ==========================================
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log
+
+
+# ==========================================
+# TEST / COVERAGE
+# ==========================================
+
+coverage/
+.nyc_output/
+
+
+# ==========================================
+# CACHE
+# ==========================================
+
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+
+# ==========================================
+# IDE / EDITOR
+# ==========================================
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+.idea/
+*.iml
+
+# Antigravity / local AI IDE files
+.ag/
+.antigravity/
+
+
+# ==========================================
+# OPERATING SYSTEM
+# ==========================================
+
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+
+# ==========================================
+# TEMPORARY FILES
+# ==========================================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.backup
+
+
+# ==========================================
+# GENERATED FILES
+# ==========================================
+
+*.pid
+*.seed
+*.pid.lock
+
+
+# ==========================================
+# DATABASE / LOCAL DATA
+# ==========================================
+
+*.sqlite
+*.sqlite3
+*.db
+
+
+# ==========================================
+# UPLOADS / RUNTIME GENERATED FILES
+# ==========================================
+
+server/uploads/
+server/tmp/
+server/temp/
+
+
+# ==========================================
+# OPTIONAL: LOCAL DEVELOPMENT FILES
+# ==========================================
+
+.DS_Store

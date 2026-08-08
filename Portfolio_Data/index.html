@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Madanraj Yuvraj Sagar — AI/ML Engineer, Full Stack Developer, and Competitive Programmer. B.Tech student at Walchand College of Engineering specializing in Artificial Intelligence & Machine Learning.">
+  <meta name="keywords" content="Madanraj Sagar, Portfolio, AI ML, Full Stack Developer, WCE Sangli, Software Engineer">
+  <meta name="author" content="Madanraj Yuvraj Sagar">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta property="og:title" content="Madanraj Yuvraj Sagar — Portfolio">
+  <meta property="og:description" content="AI/ML Engineer & Full Stack Developer crafting intelligent, user-centric solutions.">
+  <meta property="og:type" content="website">
+  <title>Madanraj Yuvraj Sagar — AI/ML Engineer & Full Stack Developer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ==================== ANIMATED BACKGROUND ORBS ==================== -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="bg-orbs__orb bg-orbs__orb--1"></div>
+    <div class="bg-orbs__orb bg-orbs__orb--2"></div>
+    <div class="bg-orbs__orb bg-orbs__orb--3"></div>
+  </div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="#hero" class="navbar__logo">MS.</a>
+
+      <div class="navbar__links">
+        <a href="#about" class="navbar__link">About</a>
+        <a href="#education" class="navbar__link">Education</a>
+        <a href="#skills" class="navbar__link">Skills</a>
+        <a href="#projects" class="navbar__link">Projects</a>
+        <a href="#achievements" class="navbar__link">Achievements</a>
+        <a href="#leadership" class="navbar__link">Leadership</a>
+        <a href="#contact" class="navbar__link">Contact</a>
+      </div>
+
+      <div class="navbar__actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <!-- Sun icon (shown in light mode) -->
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <!-- Moon icon (shown in dark mode) -->
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+
+        <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+    <a href="#about" class="mobile-menu__link">About</a>
+    <a href="#education" class="mobile-menu__link">Education</a>
+    <a href="#skills" class="mobile-menu__link">Skills</a>
+    <a href="#projects" class="mobile-menu__link">Projects</a>
+    <a href="#achievements" class="mobile-menu__link">Achievements</a>
+    <a href="#leadership" class="mobile-menu__link">Leadership</a>
+    <a href="#contact" class="mobile-menu__link">Contact</a>
+  </div>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__grid" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="pulse-dot"></span>
+        Open to Opportunities
+      </div>
+
+      <h1 class="hero__name">
+        <span class="first-name">Madanraj</span>
+        <span class="last-name">Yuvraj Sagar</span>
+      </h1>
+
+      <p class="hero__tagline">
+        I'm a <span class="typewriter-text" id="typewriter-text"></span><span class="typewriter-cursor"></span>
+      </p>
+
+      <p class="hero__subtitle">
+        B.Tech AI &amp; ML @ Walchand College of Engineering, Sangli
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#projects" class="btn btn--primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          View Projects
+        </a>
+        <a href="#" class="btn btn--outline" id="resume-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Resume
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT SECTION ==================== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">About Me</span>
+        <h2 class="section__title">Turning Ideas Into Impact</h2>
+        <p class="section__subtitle">Passionate about building intelligent solutions that solve real-world problems</p>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__image-wrapper reveal">
+          <div class="about__avatar" aria-label="Madanraj Sagar initials">MS</div>
+        </div>
+
+        <div class="about__text reveal reveal--delay-2">
+          <h3>Hello, I'm Madanraj 👋</h3>
+          <p>
+            I'm a 3rd-year B.Tech student specializing in <strong>Artificial Intelligence &amp; Machine Learning</strong>
+            at Walchand College of Engineering, Sangli. With a CGPA of <strong>8.95</strong> and a track record as a
+            <strong>4-time consecutive semester topper</strong> during my diploma, I bring both academic excellence
+            and hands-on engineering expertise.
+          </p>
+          <p>
+            My passion lies at the intersection of <strong>AI/ML</strong> and <strong>Full Stack Development</strong> —
+            building end-to-end products that leverage intelligent systems to create meaningful user experiences.
+            From RAG-powered applications using LangChain and FAISS to production-grade web platforms, I thrive on
+            transforming complex problems into elegant, scalable solutions.
+          </p>
+          <p>
+            When I'm not coding, you'll find me competing in <strong>hackathons</strong>, contributing to
+            <strong>open-source</strong>, presenting research papers at national-level competitions, or mentoring
+            fellow students. I believe in continuous learning, collaborative growth, and building technology that matters.
+          </p>
+
+          <div class="about__stats">
+            <div class="stat-card glass glass--static">
+              <div class="stat-card__number" data-count="8.95">0</div>
+              <div class="stat-card__label">CGPA</div>
+            </div>
+            <div class="stat-card glass glass--static">
+              <div class="stat-card__number" data-count="4" data-suffix="+">0</div>
+              <div class="stat-card__label">Projects</div>
+            </div>
+            <div class="stat-card glass glass--static">
+              <div class="stat-card__number" data-count="9" data-suffix="+">0</div>
+              <div class="stat-card__label">Achievements</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EDUCATION SECTION ==================== -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Education</span>
+        <h2 class="section__title">Academic Journey</h2>
+        <p class="section__subtitle">A strong foundation in computer science and artificial intelligence</p>
+      </div>
+
+      <div class="timeline">
+        <!-- B.Tech -->
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass glass--static">
+            <span class="timeline__year">2023 — Present</span>
+            <h3 class="timeline__degree">B.Tech — Artificial Intelligence &amp; Machine Learning</h3>
+            <p class="timeline__institution">Walchand College of Engineering, Sangli</p>
+            <p class="timeline__details">Currently in 3rd year, maintaining a strong academic record while actively participating in hackathons, competitive programming, and building real-world projects.</p>
+            <div class="timeline__badges">
+              <span class="badge badge--accent">CGPA: 8.95</span>
+              <span class="badge badge--accent">3rd Year</span>
+              <span class="badge badge--accent">AI &amp; ML</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diploma -->
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass glass--static">
+            <span class="timeline__year">2020 — 2023</span>
+            <h3 class="timeline__degree">Diploma — Computer Technology</h3>
+            <p class="timeline__institution">MSBTE</p>
+            <p class="timeline__details">Graduated with exceptional academic performance, securing the top rank in the college and a competitive state rank. Developed a strong foundation in programming, data structures, and web development.</p>
+            <div class="timeline__badges">
+              <span class="badge badge--gold">🏆 College Topper</span>
+              <span class="badge badge--gold">📊 95.09%</span>
+              <span class="badge badge--accent">Rank 1 × 4 Semesters</span>
+              <span class="badge badge--accent">MH State Rank: 330</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS SECTION ==================== -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Skills</span>
+        <h2 class="section__title">Technical Arsenal</h2>
+        <p class="section__subtitle">Technologies and tools I use to bring ideas to life</p>
+      </div>
+
+      <div class="skills__grid">
+        <!-- Programming -->
+        <div class="skill-category glass glass--static reveal">
+          <div class="skill-category__header">
+            <div class="skill-category__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="skill-category__title">Programming</h3>
+          </div>
+          <div class="skill-category__pills">
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">HTML</span>
+            <span class="skill-pill">CSS</span>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="skill-category glass glass--static reveal reveal--delay-1">
+          <div class="skill-category__header">
+            <div class="skill-category__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <h3 class="skill-category__title">Frontend</h3>
+          </div>
+          <div class="skill-category__pills">
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">Tailwind CSS</span>
+            <span class="skill-pill">Bootstrap</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-category glass glass--static reveal reveal--delay-2">
+          <div class="skill-category__header">
+            <div class="skill-category__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+            <h3 class="skill-category__title">Backend</h3>
+          </div>
+          <div class="skill-category__pills">
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">Express.js</span>
+            <span class="skill-pill">Flask</span>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="skill-category glass glass--static reveal reveal--delay-1">
+          <div class="skill-category__header">
+            <div class="skill-category__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <h3 class="skill-category__title">Databases</h3>
+          </div>
+          <div class="skill-category__pills">
+            <span class="skill-pill">MongoDB</span>
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">Oracle SQL</span>
+          </div>
+        </div>
+
+        <!-- AI/ML -->
+        <div class="skill-category glass glass--static reveal reveal--delay-2">
+          <div class="skill-category__header">
+            <div class="skill-category__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 014 4c0 1.95-1.4 3.58-3.25 3.93L12 22l-.75-12.07A4.001 4.001 0 018 6a4 4 0 014-4z"/><path d="M9 6.5a2.5 2.5 0 015 0"/></svg>
+            </div>
+            <h3 class="skill-category__title">AI / ML</h3>
+          </div>
+          <div class="skill-category__pills">
+            <span class="skill-pill">LangChain</span>
+            <span class="skill-pill">FAISS</span>
+            <span class="skill-pill">RAG</span>
+            <span class="skill-pill">LLM Integration</span>
+            <span class="skill-pill">HuggingFace</span>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-category glass glass--static reveal reveal--delay-3">
+          <div class="skill-category__header">
+            <div class="skill-category__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3 class="skill-category__title">Tools & DevOps</h3>
+          </div>
+          <div class="skill-category__pills">
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill">GitHub</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">Postman</span>
+            <span class="skill-pill">Cloudinary</span>
+            <span class="skill-pill">AWS EC2</span>
+            <span class="skill-pill">Render</span>
+            <span class="skill-pill">Vercel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROJECTS SECTION ==================== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Projects</span>
+        <h2 class="section__title">Featured Work</h2>
+        <p class="section__subtitle">Real-world applications built with passion and precision</p>
+      </div>
+
+      <div class="projects__grid" id="projects-grid">
+        <!-- Dynamically rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ACHIEVEMENTS SECTION ==================== -->
+  <section class="section" id="achievements">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Achievements</span>
+        <h2 class="section__title">Recognition & Awards</h2>
+        <p class="section__subtitle">Milestones that fuel my drive to excel</p>
+      </div>
+
+      <div class="achievements__grid" id="achievements-grid">
+        <!-- Dynamically rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LEADERSHIP SECTION ==================== -->
+  <section class="section" id="leadership">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Leadership</span>
+        <h2 class="section__title">Leading by Example</h2>
+        <p class="section__subtitle">Driving impact through collaboration and initiative</p>
+      </div>
+
+      <div class="leadership__grid">
+        <!-- Hackathon Team Lead -->
+        <div class="leadership-card glass glass--static reveal">
+          <div class="leadership-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="leadership-card__content">
+            <h4>Hackathon Team Leader</h4>
+            <p>Led cross-functional teams in multiple hackathons including HackoutSav and Reimagine, coordinating ideation, development sprints, and final presentations under tight deadlines.</p>
+            <span class="leadership-card__tag">Team Management</span>
+          </div>
+        </div>
+
+        <!-- Open Source -->
+        <div class="leadership-card glass glass--static reveal reveal--delay-1">
+          <div class="leadership-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="leadership-card__content">
+            <h4>Open Source Contributor</h4>
+            <p>Active participant in Hacktoberfest, contributing meaningful pull requests to community projects. Advocate for open-source collaboration and knowledge sharing within the developer community.</p>
+            <span class="leadership-card__tag">Open Source</span>
+          </div>
+        </div>
+
+        <!-- Academic Mentor -->
+        <div class="leadership-card glass glass--static reveal reveal--delay-2">
+          <div class="leadership-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <div class="leadership-card__content">
+            <h4>Academic Mentor &amp; Peer Guide</h4>
+            <p>As a 4-time semester topper and Government Scholarship recipient, actively mentored junior students in programming fundamentals, data structures, and exam preparation strategies.</p>
+            <span class="leadership-card__tag">Mentorship</span>
+          </div>
+        </div>
+
+        <!-- Technical Speaker -->
+        <div class="leadership-card glass glass--static reveal reveal--delay-3">
+          <div class="leadership-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="leadership-card__content">
+            <h4>Technical Speaker &amp; Researcher</h4>
+            <p>Presented technical research papers at both National and State-Level Paper Presentation Competitions, demonstrating the ability to communicate complex ideas effectively to expert panels.</p>
+            <span class="leadership-card__tag">Research &amp; Communication</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT SECTION ==================== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Contact</span>
+        <h2 class="section__title">Let's Connect</h2>
+        <p class="section__subtitle">I'm always open to discussing new opportunities and collaborations</p>
+      </div>
+
+      <div class="contact__grid">
+        <div class="contact__info glass glass--static reveal">
+          <h3>Get in Touch</h3>
+          <p>Whether you have a project idea, a job opportunity, or just want to say hello — feel free to reach out. I'd love to hear from you.</p>
+
+          <div class="contact__links">
+            <a href="mailto:madanraj.sagar@example.com" class="contact__link" id="contact-email">
+              <div class="contact__link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact__link-text">
+                <div class="contact__link-label">Email</div>
+                <div class="contact__link-value">madanraj.sagar@example.com</div>
+              </div>
+            </a>
+
+            <a href="tel:+91XXXXXXXXXX" class="contact__link" id="contact-phone">
+              <div class="contact__link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="contact__link-text">
+                <div class="contact__link-label">Phone</div>
+                <div class="contact__link-value">+91 XXXXX XXXXX</div>
+              </div>
+            </a>
+
+            <a href="https://github.com/madanraj" target="_blank" rel="noopener" class="contact__link" id="contact-github">
+              <div class="contact__link-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </div>
+              <div class="contact__link-text">
+                <div class="contact__link-label">GitHub</div>
+                <div class="contact__link-value">github.com/madanraj</div>
+              </div>
+            </a>
+
+            <a href="https://linkedin.com/in/madanraj" target="_blank" rel="noopener" class="contact__link" id="contact-linkedin">
+              <div class="contact__link-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <div class="contact__link-text">
+                <div class="contact__link-label">LinkedIn</div>
+                <div class="contact__link-value">linkedin.com/in/madanraj</div>
+              </div>
+            </a>
+
+            <a href="https://leetcode.com/madanraj" target="_blank" rel="noopener" class="contact__link" id="contact-leetcode">
+              <div class="contact__link-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 00-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 00-1.209 2.104 5.35 5.35 0 00-.125.513 5.527 5.527 0 00.062 2.362 5.83 5.83 0 00.349 1.017 5.938 5.938 0 001.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 00-1.951-.003l-2.396 2.392a3.021 3.021 0 01-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 01.066-.523 2.545 2.545 0 01.619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 00-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0013.483 0zm-2.866 12.815a1.38 1.38 0 00-1.38 1.382 1.38 1.38 0 001.38 1.382H20.79a1.38 1.38 0 001.38-1.382 1.38 1.38 0 00-1.38-1.382z"/></svg>
+              </div>
+              <div class="contact__link-text">
+                <div class="contact__link-label">LeetCode</div>
+                <div class="contact__link-value">leetcode.com/madanraj</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact__form glass glass--static reveal reveal--delay-2">
+          <h3>Send a Message</h3>
+          <form id="contact-form" onsubmit="event.preventDefault();">
+            <div class="form-group">
+              <label for="contact-name-input">Your Name</label>
+              <input type="text" id="contact-name-input" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email-input">Your Email</label>
+              <input type="email" id="contact-email-input" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-message-input">Message</label>
+              <textarea id="contact-message-input" placeholder="Tell me about your project or opportunity..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" style="width:100%; justify-content:center;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">
+        Designed &amp; Built by <span>Madanraj Yuvraj Sagar</span> &copy; 2026
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL ==================== -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button class="modal__close" id="modal-close" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
