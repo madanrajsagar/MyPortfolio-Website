@@ -79,9 +79,9 @@ const Home = () => {
       {visibility.projects !== false && <Projects projects={projects} isLoading={projectsLoading} />}
       {visibility.skills !== false && <Skills skills={skills} isLoading={skillsLoading} />}
       {visibility.experience !== false && <Experience experiences={experiences} isLoading={experiencesLoading} />}
-      <Testimonials />
       <CodingProfiles />
       <Certificates />
+      <Testimonials />
       {visibility.contact !== false && <Contact settings={settings} />}
     </div>
   );

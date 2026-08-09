@@ -106,7 +106,6 @@ const Hero = ({ settings = {} }) => {
     { target: 4, suffix: '', label: 'Major Projects', color: 'text-indigo-400' },
     { target: 9, suffix: '+', label: 'Technical Achievements', color: 'text-violet-400' },
     { target: 9.29, suffix: '', decimals: 2, label: 'CGPA', color: 'text-emerald-400' },
-    { target: 5, suffix: '+', label: 'Hackathon Wins', color: 'text-amber-400' },
     { target: 100, suffix: '%', label: 'AI + FS Developer', color: 'text-sky-400' },
   ];
 

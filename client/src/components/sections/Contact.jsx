@@ -194,7 +194,7 @@ const Contact = ({ settings = {} }) => {
         >
           <div>
             <h3 className="font-display font-bold text-white text-base">Download My Resume</h3>
-            <p className="text-xs text-gray-400 mt-1">Latest version with projects, education (CGPA 8.95), skills, and achievements.</p>
+            <p className="text-xs text-gray-400 mt-1">Latest version with projects, education (CGPA 9.29), skills, and achievements.</p>
           </div>
           <button
             onClick={() => {

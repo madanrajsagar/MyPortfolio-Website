@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   ShieldAlert, BarChart3, FolderGit2, BookOpen, Brain, Briefcase, Award,
   Image as ImageIcon, Mail, Settings, Plus, Edit, Trash2, CheckCircle2,
-  AlertCircle, Upload, Eye, FileText, ArrowRight, Save, Copy, Check, User, Trophy, X
+  AlertCircle, Upload, Eye, FileText, ArrowRight, Save, Copy, Check, User, Trophy, X, Star, Globe
 } from 'lucide-react';
 import api from '../services/api.js';
 import MediaLibrary from '../components/admin/MediaLibrary.jsx';
@@ -66,6 +66,7 @@ const AdminDashboard = () => {
   const { data: messagesRes } = useQuery({ queryKey: ['admin-messages'], queryFn: () => api.get('/messages'), enabled: isAdmin });
   const { data: settingsRes } = useQuery({ queryKey: ['admin-settings'], queryFn: () => api.get('/settings'), enabled: isAdmin });
   const { data: experiencesRes } = useQuery({ queryKey: ['admin-experiences'], queryFn: () => api.get('/experience'), enabled: isAdmin });
+  const { data: highlightsRes } = useQuery({ queryKey: ['admin-highlights'], queryFn: () => api.get('/highlights?all=true'), enabled: isAdmin });
 
   const stats = statsRes?.data?.data || {};
   const projects = projectsRes?.data?.data || [];
@@ -78,6 +79,7 @@ const AdminDashboard = () => {
   const gallery = galleryRes?.data?.data || [];
   const messages = messagesRes?.data?.data || [];
   const settings = settingsRes?.data?.data || {};
+  const highlights = highlightsRes?.data?.data || [];
 
   const handleOpenCreateModal = (type) => {
     setModalType(type);
@@ -330,13 +332,10 @@ const AdminDashboard = () => {
     { label: 'Overview', id: 'stats', icon: BarChart3 },
     { label: 'Projects', id: 'projects', icon: FolderGit2 },
     { label: 'Achievements', id: 'achievements', icon: Trophy },
-    { label: 'Blogs', id: 'blogs', icon: BookOpen },
     { label: 'Skills', id: 'skills', icon: Brain },
     { label: 'Timeline', id: 'experience', icon: Briefcase },
+    { label: 'Highlights', id: 'highlights', icon: Star },
     { label: 'Certificates', id: 'certificates', icon: Award },
-    { label: 'Gallery', id: 'gallery', icon: ImageIcon },
-    { label: 'Media Library', id: 'media', icon: ImageIcon },
-    { label: 'Menu Builder', id: 'navigation', icon: FileText },
     { label: 'Recycle Bin', id: 'recycle', icon: Trash2 },
     { label: 'Admin Profile', id: 'profile', icon: User },
     { label: 'Messages', id: 'messages', icon: Mail, badge: stats?.summary?.unreadMessages },
@@ -454,6 +453,22 @@ const AdminDashboard = () => {
                     <span className="text-[10px] text-gray-500">Views: {p.views}</span>
                   </div>
                   <div className="flex gap-1 shrink-0">
+                    <button
+                      onClick={async () => {
+                        try {
+                          await api.put(`/projects/${p._id}`, { featured: !p.featured });
+                          queryClient.invalidateQueries(['admin-projects']);
+                          setOpSuccess('Project featured status updated!');
+                          setTimeout(() => setOpSuccess(''), 3000);
+                        } catch (err) {
+                          setOpError(err.response?.data?.message || 'Failed to toggle featured status');
+                        }
+                      }}
+                      className={`p-1.5 rounded hover:bg-white/5 ${p.featured ? 'text-yellow-400' : 'text-gray-500'}`}
+                      title={p.featured ? 'Remove from Featured Case Studies' : 'Feature this Case Study'}
+                    >
+                      <Star className={`w-4 h-4 ${p.featured ? 'fill-current' : ''}`} />
+                    </button>
                     <button
                       onClick={() => handleTogglePublish('projects', p)}
                       className={`p-1.5 rounded hover:bg-white/5 ${p.status === 'published' ? 'text-indigo-400' : 'text-gray-500'}`}
@@ -725,6 +740,67 @@ const AdminDashboard = () => {
                       className="text-rose-400"
                     >
                       Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'highlights' && (
+          <div className="flex flex-col gap-6">
+            <button
+              onClick={() => handleOpenCreateModal('highlights')}
+              className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs w-max flex items-center gap-1.5 clickable"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add New Highlight</span>
+            </button>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {highlights.map((hl) => (
+                <div key={hl._id} className="p-5 rounded-2xl glass-card border border-white/5 flex justify-between items-start gap-4">
+                  <div className="flex flex-col gap-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h4 className="font-semibold text-white text-sm truncate max-w-[200px]" title={hl.title}>{hl.title}</h4>
+                      <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${hl.featured ? 'bg-amber-500/10 text-yellow-400 border border-yellow-500/20' : 'bg-white/5 text-gray-400 border border-white/10'}`}>
+                        {hl.featured ? 'Featured' : 'Regular'}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-gray-500">{hl.subtitle || 'No Subtitle'}</span>
+                    <p className="text-[10px] text-gray-400 line-clamp-2 mt-1">{hl.description}</p>
+                  </div>
+                  <div className="flex gap-1 shrink-0">
+                    <button
+                      onClick={async () => {
+                        try {
+                          await api.put(`/highlights/${hl._id}`, { featured: !hl.featured });
+                          queryClient.invalidateQueries(['admin-highlights']);
+                          setOpSuccess('Highlight featured status updated!');
+                          setTimeout(() => setOpSuccess(''), 3000);
+                        } catch (err) {
+                          setOpError(err.response?.data?.message || 'Failed to toggle featured status');
+                        }
+                      }}
+                      className={`p-1.5 rounded hover:bg-white/5 ${hl.featured ? 'text-yellow-400' : 'text-gray-500'}`}
+                      title={hl.featured ? 'Remove from Featured Highlights' : 'Feature this Highlight'}
+                    >
+                      <Star className={`w-4 h-4 ${hl.featured ? 'fill-current' : ''}`} />
+                    </button>
+                    <button
+                      onClick={() => handleOpenEditModal('highlights', hl)}
+                      className="p-1.5 rounded hover:bg-white/5 text-indigo-400"
+                      title="Edit Highlight"
+                    >
+                      <Edit className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteItem('highlights', hl._id)}
+                      className="p-1.5 rounded hover:bg-white/5 text-rose-400"
+                      title="Delete Highlight"
+                    >
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -1287,6 +1363,128 @@ const AdminDashboard = () => {
                       onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                       className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white resize-none"
                     />
+                  </div>
+                </>
+              )}
+
+              {/* Highlights fields */}
+              {modalType === 'highlights' && (
+                <>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Highlight Title</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.title || ''}
+                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Subtitle</label>
+                    <input
+                      type="text"
+                      value={formData.subtitle || ''}
+                      onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
+                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Description</label>
+                    <textarea
+                      rows="3"
+                      required
+                      value={formData.description || ''}
+                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white resize-none"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Badge Text</label>
+                      <input
+                        type="text"
+                        value={formData.badge || ''}
+                        onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
+                        placeholder="Winner, State Merit..."
+                        className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Icon</label>
+                      <select
+                        value={formData.icon || 'Star'}
+                        onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                        className="bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                      >
+                        {['Star', 'Trophy', 'Award', 'GraduationCap', 'MapPin', 'Code2', 'Sparkles', 'Globe'].map(ic => (
+                          <option key={ic} value={ic} className="bg-bgDark">{ic}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Color Style Combination</label>
+                      <select
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === 'blue') {
+                            setFormData(prev => ({ ...prev, color: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/20', glow: 'shadow-indigo-500/10' }));
+                          } else if (val === 'gold') {
+                            setFormData(prev => ({ ...prev, color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20', glow: 'shadow-amber-500/10' }));
+                          } else if (val === 'purple') {
+                            setFormData(prev => ({ ...prev, color: 'text-violet-400', bg: 'bg-violet-500/10', border: 'border-violet-500/20', glow: 'shadow-violet-500/10' }));
+                          } else if (val === 'green') {
+                            setFormData(prev => ({ ...prev, color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', glow: 'shadow-emerald-500/10' }));
+                          } else if (val === 'rose') {
+                            setFormData(prev => ({ ...prev, color: 'text-rose-400', bg: 'bg-rose-500/5', border: 'border-rose-500/15', glow: 'shadow-rose-500/5' }));
+                          } else if (val === 'silver') {
+                            setFormData(prev => ({ ...prev, color: 'text-gray-300', bg: 'bg-white/5', border: 'border-white/10', glow: 'shadow-white/5' }));
+                          }
+                        }}
+                        className="bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                      >
+                        <option value="" className="bg-bgDark">Select Style Template...</option>
+                        <option value="blue" className="bg-bgDark">Blue / Indigo (Default)</option>
+                        <option value="gold" className="bg-bgDark">Gold / Amber</option>
+                        <option value="purple" className="bg-bgDark">Purple / Violet</option>
+                        <option value="green" className="bg-bgDark">Green / Emerald</option>
+                        <option value="rose" className="bg-bgDark">Rose / Red</option>
+                        <option value="silver" className="bg-bgDark">Silver / Gray</option>
+                      </select>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Display Order Index</label>
+                      <input
+                        type="number"
+                        value={formData.order || 0}
+                        onChange={(e) => setFormData({ ...formData, order: Number(e.target.value) })}
+                        className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-6 mt-1">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="hlFeatured"
+                        checked={formData.featured || false}
+                        onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
+                        className="rounded bg-white/5 border-white/10 text-indigo-600 focus:ring-0"
+                      />
+                      <label htmlFor="hlFeatured" className="text-xs text-gray-400 font-semibold select-none">Featured Highlight</label>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <select
+                        value={formData.status || 'published'}
+                        onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                        className="bg-[#101022] border border-white/10 rounded-xl px-3 py-1 text-xs text-white"
+                      >
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                      </select>
+                    </div>
                   </div>
                 </>
               )}

@@ -495,8 +495,8 @@ html.light button.bg-indigo-600,
 html.light a.bg-indigo-600,
 html.light .bg-rose-600,
 html.light .bg-pink-600,
-html.light .bg-gradient-to-r,
-html.light .bg-gradient-to-r * {
+html.light button.bg-gradient-to-r *,
+html.light a.bg-gradient-to-r * {
   color: #ffffff !important;
 }
 

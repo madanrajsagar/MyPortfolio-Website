@@ -15,6 +15,7 @@ import analyticsRoutes from './analyticsRoutes.js';
 import cmsRoutes from './cmsRoutes.js';
 import mediaRoutes from './mediaRoutes.js';
 import navigationRoutes from './navigationRoutes.js';
+import highlightRoutes from './highlightRoutes.js';
 
 const router = express.Router();
 
@@ -34,5 +35,6 @@ router.use('/analytics', analyticsRoutes);
 router.use('/cms', cmsRoutes);
 router.use('/media', mediaRoutes);
 router.use('/navigation', navigationRoutes);
+router.use('/highlights', highlightRoutes);
 
 export default router;

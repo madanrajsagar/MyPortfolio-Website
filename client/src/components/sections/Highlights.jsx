@@ -1,87 +1,43 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Star, Trophy, GraduationCap, MapPin, Zap, Code2, Sparkles } from 'lucide-react';
+import { Award, Star, Trophy, GraduationCap, MapPin, Zap, Code2, Sparkles, Globe } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import api from '../../services/api.js';
 
 const Highlights = () => {
-  const highlights = [
-    {
-      icon: Trophy,
-      title: '1st Runner-Up – HackoutSav',
-      subtitle: 'National Hackathon',
-      description: 'Secured 2nd place out of 100+ teams across Maharashtra, winning a cash prize of ₹15,000 for building a functional MERN prototype.',
-      color: 'text-gray-300',
-      bg: 'bg-white/5',
-      border: 'border-white/10',
-      glow: 'shadow-white/5',
-      badge: '₹15,000 Prize',
-    },
-    {
-      icon: Award,
-      title: 'Winner – AI Prompt Battle',
-      subtitle: 'Prompt Engineering Championship',
-      description: 'Won 1st place in the real-time AI prompt battle by crafting highly optimized prompts and few-shot logic for LLMs under constraints.',
-      color: 'text-amber-400',
-      bg: 'bg-amber-500/10',
-      border: 'border-amber-500/20',
-      glow: 'shadow-amber-500/10',
-      badge: 'Winner',
-    },
-    {
-      icon: Sparkles,
-      title: 'Winner – Reimagine',
-      subtitle: 'Innovation Challenge',
-      description: 'Secured 1st place by architecting and presenting a modern digital replacement for institutional administrative workflows.',
-      color: 'text-amber-400',
-      bg: 'bg-amber-500/10',
-      border: 'border-amber-500/20',
-      glow: 'shadow-amber-500/10',
-      badge: 'Winner',
-    },
-    {
-      icon: GraduationCap,
-      title: 'College Topper (Diploma)',
-      subtitle: 'Computer Technology',
-      description: 'Graduated at Rank 1 overall with 95.09% aggregate, remaining topper for four consecutive semesters.',
-      color: 'text-violet-400',
-      bg: 'bg-violet-500/10',
-      border: 'border-violet-500/20',
-      glow: 'shadow-violet-500/10',
-      badge: '95.09% Marks',
-    },
-    {
-      icon: MapPin,
-      title: 'Maharashtra State Rank 330',
-      subtitle: 'MSBTE Board merit list',
-      description: 'Placed in the top percentile among thousands of computer diploma students across the entire state of Maharashtra.',
-      color: 'text-rose-400',
-      bg: 'bg-rose-500/5',
-      border: 'border-rose-500/15',
-      glow: 'shadow-rose-500/5',
-      badge: 'State Merit',
-    },
-    {
-      icon: Star,
-      title: 'Current CGPA – 9.29',
-      subtitle: 'B.Tech AI & ML at Walchand',
-      description: 'Consistently high academic standing in Artificial Intelligence & Machine Learning specialization subjects.',
-      color: 'text-emerald-400',
-      bg: 'bg-emerald-500/10',
-      border: 'border-emerald-500/20',
-      glow: 'shadow-emerald-500/10',
-      badge: '9.29 CGPA',
-    },
-    {
-      icon: Code2,
-      title: 'Built Multiple Full Stack & AI Projects',
-      subtitle: 'MERN + Local LLMs',
-      description: 'From AI safety portals (Abhaya) to resource catalogs (MSBTE Navigator) and travel platforms (TravelNest).',
-      color: 'text-indigo-400',
-      bg: 'bg-indigo-500/10',
-      border: 'border-indigo-500/20',
-      glow: 'shadow-indigo-500/10',
-      badge: '4+ Projects',
-    },
-  ];
+  const { data: highlightsRes, isLoading, error } = useQuery({
+    queryKey: ['highlights'],
+    queryFn: () => api.get('/highlights'),
+  });
+
+  console.log('HIGHLIGHTS RESPONSE:', highlightsRes);
+  console.log('HIGHLIGHTS ERROR:', error);
+
+  const rawHighlights = highlightsRes?.data?.data || [];
+  console.log('RAW HIGHLIGHTS:', rawHighlights);
+
+  const iconsMap = {
+    Trophy,
+    Award,
+    Sparkles,
+    GraduationCap,
+    MapPin,
+    Star,
+    Code2,
+    Globe,
+  };
+
+  const highlights = rawHighlights.map(h => ({
+    icon: iconsMap[h.icon] || Star,
+    title: h.title,
+    subtitle: h.subtitle || '',
+    description: h.description,
+    color: h.color || 'text-indigo-400',
+    bg: h.bg || 'bg-indigo-500/10',
+    border: h.border || 'border-indigo-500/20',
+    glow: h.glow || 'shadow-indigo-500/10',
+    badge: h.badge || 'Highlight',
+  }));
 
   return (
     <section id="highlights" className="py-20 bg-[#05050b] relative overflow-hidden">
@@ -113,42 +69,58 @@ const Highlights = () => {
 
         {/* Highlights Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {highlights.map((h, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: idx * 0.06 }}
-              whileHover={{ y: -6 }}
-              className={`p-6 rounded-2xl glass-card border ${h.border} flex flex-col gap-4 hover:shadow-lg ${h.glow} transition-all duration-300 group clickable relative overflow-hidden`}
-            >
-              {/* Top border neon line */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500/30 via-transparent to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div className="flex items-center justify-between">
-                <div className={`p-3 rounded-xl ${h.bg} border ${h.border} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                  <h.icon className={`w-5 h-5 ${h.color}`} />
+          {isLoading ? (
+            Array.from({ length: 4 }).map((_, idx) => (
+              <div key={idx} className="p-6 rounded-2xl glass-card border border-white/5 flex flex-col gap-4 animate-pulse h-48 justify-between">
+                <div className="flex justify-between items-center">
+                  <div className="w-10 h-10 rounded-xl bg-white/5" />
+                  <div className="w-16 h-4 rounded bg-white/5" />
                 </div>
-                <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${h.color} ${h.bg} ${h.border}`}>
-                  {h.badge}
-                </span>
+                <div className="space-y-2">
+                  <div className="w-3/4 h-4 rounded bg-white/5" />
+                  <div className="w-1/2 h-3 rounded bg-white/5" />
+                </div>
+                <div className="w-full h-8 rounded bg-white/5" />
               </div>
+            ))
+          ) : (
+            highlights.map((h, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: idx * 0.06 }}
+                whileHover={{ y: -6 }}
+                className={`p-6 rounded-2xl glass-card border ${h.border} flex flex-col gap-4 hover:shadow-lg ${h.glow} transition-all duration-300 group clickable relative overflow-hidden`}
+              >
+                {/* Top border neon line */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500/30 via-transparent to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <div>
-                <h3 className="font-display font-bold text-white text-sm group-hover:text-indigo-200 transition-colors leading-tight">
-                  {h.title}
-                </h3>
-                <span className="text-[10px] text-gray-500 font-semibold block mt-1 uppercase tracking-wider">
-                  {h.subtitle}
-                </span>
-              </div>
+                <div className="flex items-center justify-between">
+                  <div className={`p-3 rounded-xl ${h.bg} border ${h.border} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <h.icon className={`w-5 h-5 ${h.color}`} />
+                  </div>
+                  <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${h.color} ${h.bg} ${h.border}`}>
+                    {h.badge}
+                  </span>
+                </div>
 
-              <p className="text-xs text-gray-400 leading-relaxed mt-1">
-                {h.description}
-              </p>
-            </motion.div>
-          ))}
+                <div>
+                  <h3 className="font-display font-bold text-white text-sm group-hover:text-indigo-200 transition-colors leading-tight">
+                    {h.title}
+                  </h3>
+                  <span className="text-[10px] text-gray-500 font-semibold block mt-1 uppercase tracking-wider">
+                    {h.subtitle}
+                  </span>
+                </div>
+
+                <p className="text-xs text-gray-400 leading-relaxed mt-1">
+                  {h.description}
+                </p>
+              </motion.div>
+            ))
+          )}
         </div>
 
       </div>
