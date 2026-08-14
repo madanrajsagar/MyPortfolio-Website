@@ -378,12 +378,22 @@ const Projects = ({ projects = [], isLoading = false }) => {
 
   // Map dynamic backend records
   const projectRecords = projects.map(p => {
-    const imagesList = Array.from(new Set([
+    const getFormattedUrl = (url) => {
+      if (!url) return '';
+      if (typeof url === 'string' && url.startsWith('http://localhost:5000/')) {
+        const apiBase = import.meta.env.VITE_API_URL.replace('/api', '');
+        return url.replace('http://localhost:5000', apiBase);
+      }
+      return url;
+    };
+
+    const rawImages = [
       ...(p.heroImage ? [p.heroImage] : []),
       ...(p.gallery || []),
       ...(p.images || []),
       ...(p.localImages || [])
-    ])).filter(Boolean);
+    ];
+    const imagesList = Array.from(new Set(rawImages.map(getFormattedUrl))).filter(Boolean);
 
     return {
       id: p._id,

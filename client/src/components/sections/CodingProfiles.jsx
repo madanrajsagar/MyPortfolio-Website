@@ -70,7 +70,7 @@ const CodingProfiles = () => {
       border: 'border-indigo-500/15',
       hoverBorder: 'hover:border-indigo-500/30',
       glow: 'hover:shadow-indigo-500/5',
-      stats: ['B.Tech AI & ML', 'CGPA 9.29', 'Active GDG Web Lead'],
+      stats: ['B.Tech AI & ML', '9.36 CGPA (Rank 2)', 'Active GDG Web Lead'],
       description: 'Download my full resume with education, projects, skills, hackathon wins, and GDG leadership experience.',
       isResume: true,
     },

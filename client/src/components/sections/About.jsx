@@ -76,7 +76,7 @@ const About = ({ education = [], aboutMe = {}, isLoading = false }) => {
             transition={{ delay: 0.2 }}
             className="mt-6 text-gray-400 max-w-2xl text-sm sm:text-base leading-relaxed"
           >
-            I am a third-year B.Tech student in Artificial Intelligence & Machine Learning at Walchand College of Engineering, Sangli, with a CGPA of <span className="text-indigo-300 font-semibold">9.29</span>. I combine strong academics with hands-on projects, hackathon wins, and community leadership to build a holistic engineering profile.
+            I am a third-year B.Tech student in Artificial Intelligence & Machine Learning at Walchand College of Engineering, Sangli, with a CGPA of <span className="text-indigo-300 font-semibold">9.36</span>. I combine strong academics with hands-on projects, hackathon wins, and community leadership to build a holistic engineering profile.
           </motion.p>
         </div>
 

@@ -35,7 +35,7 @@ const JourneyTimeline = () => {
       icon: GraduationCap,
       title: 'Walchand College of Engineering',
       period: '2023 – Present',
-      description: 'Admitted to B.Tech in Artificial Intelligence & Machine Learning. Assistant Secretary at GDG Chapter, currently maintaining 9.29 CGPA.',
+      description: 'Admitted to B.Tech in Artificial Intelligence & Machine Learning. Assistant Secretary at GDG Chapter, currently maintaining 9.36 CGPA (Rank 2).',
       color: 'text-emerald-400',
       border: 'border-emerald-500/20',
       bg: 'bg-emerald-500/10',

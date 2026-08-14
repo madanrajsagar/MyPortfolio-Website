@@ -91,7 +91,7 @@ const Footer = () => {
             </h3>
           )}
           <p className="text-xs text-gray-500 max-w-sm leading-relaxed">
-            AIML Student at Walchand College of Engineering (CGPA 9.29). Building intelligent full stack MERN web platforms, local AI models, and community structures.
+            AIML Student at Walchand College of Engineering (CGPA 9.36). Building intelligent full stack MERN web platforms, local AI models, and community structures.
           </p>
           <div className="flex items-center gap-2 mt-2">
             <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full relative shrink-0">

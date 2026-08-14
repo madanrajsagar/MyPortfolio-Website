@@ -31,7 +31,7 @@ const WhyHireMe = () => {
     {
       icon: GraduationCap,
       title: 'Excellent Academic Record',
-      description: 'Current 9.29 CGPA in B.Tech AI & ML at Walchand College. Overall 95.09% marks and Rank 1 College Topper in Diploma.',
+      description: 'Current 9.36 CGPA (Rank 2 in Class) in B.Tech AI & ML at Walchand College. Overall 95.09% marks and Rank 1 College Topper in Diploma.',
       color: 'text-emerald-400',
       bg: 'bg-emerald-500/10',
       border: 'border-emerald-500/20',

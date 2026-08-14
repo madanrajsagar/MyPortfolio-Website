@@ -85,8 +85,7 @@ const Hero = ({ settings = {} }) => {
 
   const handleDownloadResume = async () => {
     try {
-      api.post('/analytics/event', {
-        eventType: 'downloadResume',
+      await api.post('/analytics/download', {
         target: settings.resumeUrl || 'resume.pdf',
       }).catch(err => console.error(err));
 
@@ -100,12 +99,17 @@ const Hero = ({ settings = {} }) => {
     }
   };
 
+  const handleImageError = (e) => {
+    e.target.onerror = null;
+    e.target.src = "/portfolio/madanraj.png";
+  };
+
   const socialLinks = settings.socialLinks || {};
 
   const counters = [
     { target: 4, suffix: '', label: 'Major Projects', color: 'text-indigo-400' },
     { target: 9, suffix: '+', label: 'Technical Achievements', color: 'text-violet-400' },
-    { target: 9.29, suffix: '', decimals: 2, label: 'CGPA', color: 'text-emerald-400' },
+    { target: 9.36, suffix: '', decimals: 2, label: 'CGPA', color: 'text-emerald-400' },
     { target: 100, suffix: '%', label: 'AI + FS Developer', color: 'text-sky-400' },
   ];
 
@@ -168,7 +172,7 @@ const Hero = ({ settings = {} }) => {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black text-white leading-tight"
             >
               {settings.homeHero?.title || "Hello, I'm"} <br />
-              <span className="gradient-text font-black text-glow">{settings.homeHero?.name || 'Madanraj S'}</span>
+              <span className="gradient-text font-black text-glow">{settings.homeHero?.name || 'Madanraj Sagar'}</span>
             </motion.h1>
           </div>
 
@@ -318,7 +322,8 @@ const Hero = ({ settings = {} }) => {
               {/* The Photo itself */}
               <img
                 src={settings.homeHero?.profileImage || settings.avatar || "/portfolio/madanraj.png"}
-                alt={settings.homeHero?.name || "Madanraj S"}
+                alt={settings.homeHero?.name || "Madanraj Sagar"}
+                onError={handleImageError}
                 className="w-full h-full object-cover rounded-[2rem] object-top group-hover:scale-[1.03] transition-transform duration-700"
               />
 
